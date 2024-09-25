@@ -12,7 +12,7 @@ namespace USER_CONFIG{
 		{ {"mp3", "mp4"},      "mpv %s" },
 		{ {"html"},         "firefox %s"}
 	};
-	const std::string EDITOR = "vi %s";
+	const std::string EDITOR = "code %s > /dev/null";
 
 	// Preview text files on the right side of the screen
 	const bool FILE_PREVIEW = true;

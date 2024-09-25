@@ -3,8 +3,6 @@
 #include <vector>
 #include <filesystem>
 
-#include "DirectoryEntry.hpp"
-
 #define COLOR_GREY 8
 
 #define PAIR_REGULAR 1
@@ -22,11 +20,13 @@ class App {
 private:
 	std::filesystem::path currentPath;
 	std::filesystem::directory_entry currentDirectory;
-	std::vector<DirectoryEntry> currentDirectoryContents;
+	std::vector<std::filesystem::directory_entry> currentDirectoryContents;
 	std::size_t previewScroll = 0;
 
 	bool quit = false;
 	std::size_t currentLine = 0;
+	int maxx = 0;
+	int maxy = 0;
 
 	void Render() const;
 
@@ -36,7 +36,10 @@ private:
 	void ReadCurrentDirectory();
 	void InteractCurrentDirectoryEntry();
 
-	std::filesystem::path GoUpDirectory(const std::filesystem::path& path);
+	void InteractDirectory(const std::filesystem::directory_entry& de);
+	void InteractFile(const std::filesystem::directory_entry& de);
+
+	void RenderDirectoryEntry(const std::filesystem::directory_entry& de, uint linePos, const bool highlight) const;
 
 public:
 	App();
